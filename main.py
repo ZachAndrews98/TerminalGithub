@@ -1,37 +1,59 @@
+""" Main program driving file. """
+
 from github import Github
 
-from bullet_utils import utils
+from src import gen_utils
+from src import repo_utils
+from src import user_utils
+from src import search_utils
 
-from actions import repository
-from actions import user
-from actions import search
+def main():
+    """ Main function of program. """
+    f = open("./KEY", "r")
+    git_auth = Github(f.read().strip())
+
+    user = git_auth.get_user()
+
+    while True:
+        option = gen_utils.option_select(
+            prompt="What would you like to do",
+            choices=[
+                "User Info",
+                "Load Repo",
+                "Create Repo",
+                "Search",
+                "Exit"
+            ]
+        )
+        gen_utils.cls()
+        if option == "User Info":
+                user_utils.get_user_info(user)
+        elif option == "Load Repo":
+            repos = repo_utils.load_user_repos(user)
+            repo = repo_utils.select_repo(repos, user)
+            if repo != "RETURN":
+                repo_utils.load_repo(repo)
+        elif option == "Create Repo":
+            repo_utils.create_repo(user)
+        elif option == "Search":
+            type = gen_utils.option_select(
+                prompt="Search Type:",
+                choices=[
+                    "RETURN",
+                    "Repository",
+                    "User",
+                    "Topic"
+                ]
+            )
+            if type == "Repository":
+                search_utils.search_repo(git_auth)
+            elif type == "User":
+                search_utils.search_user(git_auth)
+            elif type == "RETURN":
+                continue
+        elif option == "Exit":
+            break
 
 
-g = Github("username", "password")
-
-USER = g.get_user()
-
-while True:
-    option = utils.option_select(
-        prompt="What would you like to do",
-        choices=[
-            "User Info",
-            "Load Repo",
-            "Create Repo",
-            "Search",
-            "Exit"
-        ]
-    )
-    utils.cls()
-    if option == "User Info":
-            user.get_user_info(USER)
-    elif option == "Load Repo":
-        repo = repository.select_repo(USER)
-        if repo != "RETURN":
-            repository.load_repo(repo)
-    elif option == "Create Repo":
-        repository.create_repo(USER)
-    elif option == "Search":
-        pass
-    elif option == "Exit":
-        break
+if __name__ == "__main__":
+    main()

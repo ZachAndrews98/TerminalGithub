@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 pygithub = "*"
 bullet = "*"
+pycodestyle = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.6"
