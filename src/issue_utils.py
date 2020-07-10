@@ -1,7 +1,7 @@
 """ Handles interactions with issues in repositories. """
 
 
-from src import gen_utils
+import gen_utils
 
 
 def select_issue(repo):

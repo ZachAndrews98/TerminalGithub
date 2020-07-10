@@ -4,8 +4,8 @@ import os
 
 from github import GithubException
 
-from src import issue_utils
-from src import gen_utils
+import issue_utils
+import gen_utils
 
 
 def load_user_repos(user):

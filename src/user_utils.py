@@ -3,7 +3,7 @@
 
 from github import GithubException
 
-from src import gen_utils
+import gen_utils
 
 
 def get_user_info(user):

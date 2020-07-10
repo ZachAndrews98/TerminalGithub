@@ -1,9 +1,9 @@
 """ Handles Github searches. """
 
 
-from src import repo_utils
-from src import gen_utils
-from src import user_utils
+import repo_utils
+import gen_utils
+import user_utils
 
 
 def search_repo(git_auth):

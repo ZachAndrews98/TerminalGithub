@@ -2,10 +2,10 @@
 
 from github import Github
 
-from src import gen_utils
-from src import repo_utils
-from src import user_utils
-from src import search_utils
+import gen_utils
+import repo_utils
+import user_utils
+import search_utils
 
 def main():
     """ Main function of program. """

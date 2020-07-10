@@ -2,9 +2,9 @@
 
 import os
 
-from bullet import Input
-from bullet import ScrollBar
-from bullet import YesNo
+import Input
+import ScrollBar
+import YesNo
 
 
 def option_select(prompt="", choices=None):
